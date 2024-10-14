@@ -529,6 +529,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pan",
+                    "type": "Button",
+                    "id": "d8818a6e-27b1-45b2-a9a1-378a976cac3f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PanMove",
+                    "type": "Value",
+                    "id": "aa630688-f81a-4f35-8aa3-62ac108d2130",
+                    "expectedControlType": "Vector2",
+                    "processors": "InvertVector2",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -536,10 +554,32 @@
                     "name": "",
                     "id": "12d2cc68-feda-41bb-b819-e28d7d6e71d3",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "CutGrass",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26a82f85-0520-4b55-a7d4-d8e7ade33e95",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28d61792-996a-4586-8c30-7bf6a86c0f59",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "PanMove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
