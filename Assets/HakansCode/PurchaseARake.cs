@@ -54,9 +54,12 @@ public class PurchaseARake : MonoBehaviour
     [SerializeField] TMP_Text plotSellText;
     int plots;
 
+    GrassManager grassManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        grassManager = FindFirstObjectByType<GrassManager>();
         moneyYouHave.text = money.ToString();
     }
 

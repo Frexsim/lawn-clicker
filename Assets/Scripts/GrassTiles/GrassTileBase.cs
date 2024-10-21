@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class GrassTileBase : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GrassTileBase : MonoBehaviour
     [SerializeField] int health;
 
     SpriteRenderer spriteRenderer;
+    GrassManager grassManager;
+    PurchaseUpgrades purchaseUpgrades;
 
     private void Awake()
     {
@@ -22,13 +25,23 @@ public class GrassTileBase : MonoBehaviour
 
     private void Start()
     {
+        grassManager = FindFirstObjectByType<GrassManager>();
+        purchaseUpgrades = FindFirstObjectByType<PurchaseUpgrades>();
         StartCoroutine("GrowLoop");
     }
 
     public void Cut()
     {
+        grassManager.moneyYouHave.text = grassManager.money.ToString();
+        grassManager.defaultGrassMoney = 1f;
         if (health > 0)
         {
+            grassManager.defaultGrassMoney = grassManager.defaultGrassMoney * purchaseUpgrades.cutterProviding;
+            grassManager.moneyGain = grassManager.defaultGrassMoney + grassManager.rakeProviding;
+            grassManager.money = grassManager.money + grassManager.moneyGain + purchaseUpgrades.plotGiving;
+
+            grassManager.moneyYouHave.text = grassManager.money.ToString();
+
             health -= 1;
             UpdateSprite();
         }

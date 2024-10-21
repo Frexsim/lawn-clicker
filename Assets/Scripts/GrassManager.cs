@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,18 @@ public class GrassManager : MonoBehaviour
     GrassTileBase[,] grassTiles;
 
     bool isPanning = false;
+
+    public TMP_Text moneyYouHave;
+    public float money;
+    public float moneyGain;
+    public float defaultGrassMoney;
+
+    [Header("Upgrades")]
+    public float rakeIncrease;
+    public float slaveGain;
+    public float cutterIncrease;
+    public float rakeProviding = 1f;
+    public float rakeProvidingIncrease = 1.5f;
 
     private void Awake()
     {
