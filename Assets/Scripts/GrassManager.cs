@@ -68,7 +68,12 @@ public class GrassManager : MonoBehaviour
     {
         if (isPanning)
         {
-            Camera.main.transform.position += Camera.main.ScreenToViewportPoint((Vector3) value.Get<Vector2>()) * panSensitivity;
+            Camera.main.transform.position += (Vector3) value.Get<Vector2>() / Camera.main.pixelHeight * Camera.main.orthographicSize;
         }
+    }
+
+    public void OnZoom(InputValue value)
+    {
+        Camera.main.orthographicSize -= value.Get<float>();
     }
 }
