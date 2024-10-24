@@ -6,14 +6,17 @@ public class GrassTileBase : MonoBehaviour
 {
     [SerializeField] Sprite[] grassTileLevelSprites;
     [SerializeField, Min(0.5f)] float growthSpeedMin;
-    [SerializeField, Min(0.5f)] float growthSpeedMax;
+    [SerializeField, Min(0.5f)] public float growthSpeedMax;
 
     [SerializeField] int maxHealth;
     [SerializeField] int health;
 
+    public bool inSprinkleRange = false;
+
     SpriteRenderer spriteRenderer;
     GrassManager grassManager;
     PurchaseUpgrades purchaseUpgrades;
+    SprinkleSpread sprinkleSpread;
 
     private void Awake()
     {
@@ -27,7 +30,16 @@ public class GrassTileBase : MonoBehaviour
     {
         grassManager = FindFirstObjectByType<GrassManager>();
         purchaseUpgrades = FindFirstObjectByType<PurchaseUpgrades>();
+        sprinkleSpread = FindFirstObjectByType<SprinkleSpread>();
         StartCoroutine("GrowLoop");
+    }
+
+    private void Update()
+    {
+        if (!inSprinkleRange)
+        {
+            growthSpeedMax = sprinkleSpread.growthSpeedOut;
+        }
     }
 
     public void Cut()
