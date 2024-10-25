@@ -3,8 +3,12 @@ using UnityEngine;
 public class SprinklerDrag : MonoBehaviour
 {
     public bool isDragging = false;
+    SprinkleSpreader sprinkleSpread;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        sprinkleSpread = GetComponent<SprinkleSpreader>();
+    }
     void Update()
     {
         if(isDragging)
@@ -16,10 +20,12 @@ public class SprinklerDrag : MonoBehaviour
     private void OnMouseDown()
     {
         isDragging = true;
+        sprinkleSpread.mySpreadCollider.enabled = false;
     }
 
     private void OnMouseUp()
     {
         isDragging = false;
+        sprinkleSpread.mySpreadCollider.enabled = true;
     }
 }
