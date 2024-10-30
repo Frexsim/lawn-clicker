@@ -3,29 +3,36 @@ using UnityEngine;
 
 public class SprinkleSpread : MonoBehaviour
 {
-
-    [SerializeField] float raycastRadius = 3f;
-    [SerializeField] LayerMask grassLayer;
-    float maxGrowthSpeedIn = 2.5f;
+    [SerializeField] private float raycastRadius = 3f;
+    [SerializeField] private LayerMask grassLayer;
+    private float maxGrowthSpeedIn = 2.5f;
     public float growthSpeedOut = 5f;
     public bool isChilded = false;
 
-    SprinklerDrag sprinklerDrag;
+    private SprinklerDrag sprinklerDrag;
 
-    private void Start()
+    void Start()
     {
+        // Find the SprinklerDrag instance in the scene
         sprinklerDrag = FindFirstObjectByType<SprinklerDrag>();
     }
 
-    private void Update()
+    [System.Obsolete]
+    void Update()
     {
-        if (!isChilded && sprinklerDrag.isDragging == false)
+        if (!isChilded && !sprinklerDrag.isDragging)
         {
-            DetectGrassTiles();
+            GrassTileDetection();
+        }
+
+        if (isChilded || sprinklerDrag.isDragging)
+        {
+            ChildedGrowthSpeed();
         }
     }
 
-    void DetectGrassTiles()
+    [System.Obsolete]
+    void GrassTileDetection()
     {
         Collider[] grassColliders = Physics.OverlapSphere(transform.position, raycastRadius, grassLayer);
 
@@ -38,15 +45,44 @@ public class SprinkleSpread : MonoBehaviour
                 grassTile.growthSpeedMax = maxGrowthSpeedIn;
                 grassTile.inSprinkleRange = true;
             }
-            else
+        }
+        GrowthOutOfRange(grassColliders);
+    }
+
+    [System.Obsolete]
+    void GrowthOutOfRange(Collider[] inRangeColliders)
+    {
+        foreach (GrassTileBase grassTile in FindObjectsOfType<GrassTileBase>())
+        {
+            if (System.Array.IndexOf(inRangeColliders, grassTile.GetComponent<Collider>()) < 0)
             {
+                grassTile.growthSpeedMax = growthSpeedOut;
                 grassTile.inSprinkleRange = false;
             }
         }
     }
 
-    private void OnDrawGizmos()
+    // När sprinklern inte används
+    void ChildedGrowthSpeed()
     {
+        Collider[] grassColliders = Physics.OverlapSphere(transform.position, raycastRadius, grassLayer);
+
+        foreach (Collider grassCollider in grassColliders)
+        {
+            GrassTileBase grassTile = grassCollider.GetComponent<GrassTileBase>();
+
+            if (grassTile != null)
+            {
+                grassTile.growthSpeedMax = growthSpeedOut;
+                grassTile.inSprinkleRange = false;
+            }
+        }
+    }
+
+
+    void OnDrawGizmos()
+    {
+        // Draw a red wire sphere for the overlap sphere's radius
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, raycastRadius);
     }
