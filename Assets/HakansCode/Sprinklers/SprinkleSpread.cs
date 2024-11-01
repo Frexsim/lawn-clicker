@@ -9,12 +9,15 @@ public class SprinkleSpread : MonoBehaviour
     public float growthSpeedOut = 5f;
     public bool isChilded = false;
 
+    public Vector3 originalSprinkleSize;
+
     private SprinklerDrag sprinklerDrag;
 
     void Start()
     {
         // Find the SprinklerDrag instance in the scene
         sprinklerDrag = FindFirstObjectByType<SprinklerDrag>();
+        originalSprinkleSize = gameObject.transform.localScale;
     }
 
     [System.Obsolete]
