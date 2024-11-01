@@ -6,6 +6,7 @@ public class GrassManager : MonoBehaviour
 {
     [SerializeField] Vector2Int lawnSize = new Vector2Int(10, 10);
     [SerializeField] float panSensitivity = 0.1f;
+    [SerializeField] private float zoomFactor = 0.05f;
 
     [SerializeField] GrassTileBase grassTilePrefab;
 
@@ -74,6 +75,7 @@ public class GrassManager : MonoBehaviour
 
     public void OnZoom(InputValue value)
     {
-        Camera.main.orthographicSize -= value.Get<float>();
+        Camera.main.orthographicSize -= value.Get<float>() * zoomFactor;
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 1, 10);
     }
 }
