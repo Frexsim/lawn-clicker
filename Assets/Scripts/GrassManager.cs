@@ -94,23 +94,25 @@ public class GrassManager : MonoBehaviour
 
     public void OnZoom(InputValue value)
     {
-
         Camera.main.orthographicSize -= value.Get<float>() * zoomFactor;
         Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 1, 10);
 
-        sprinklerSlot.transform.localScale -= new Vector3(value.Get<float>() * zoomFactor, value.Get<float>() * zoomFactor, 0f);
-        sprinklerSlot.transform.localPosition -= new Vector3(value.Get<float>() * zoomFactor, value.Get<float>() * zoomFactor, 0f);
+        // Screen edge position
+        float cameraRightEdge = Camera.main.aspect * Camera.main.orthographicSize;
+        float cameraTopEdge = Camera.main.orthographicSize;
 
+        // original sprinkler slot scale
+        sprinklerSlot.transform.localScale = Vector3.one; // Dont care about this until the sprinkler item slot is done
 
-        //value.Get<float>() * zoomFactor;
-        //Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 1, 10);
+        // Sprinkler slot position at the upper right corner
+        Vector3 slotHalfSize = sprinklerSlot.GetComponent<Renderer>().bounds.extents;
+        sprinklerSlot.transform.position = Camera.main.transform.position + new Vector3(cameraRightEdge - slotHalfSize.x, cameraTopEdge - slotHalfSize.y, 10f);
 
-
-        zoomSprinkleSize -= new Vector3(value.Get<float>() * zoomFactor, value.Get<float>() * zoomFactor, 0f);
-
+        // If childed, apply the zoom scaling size
         if (sprinkleSpread.isChilded)
         {
-            sprinkler.transform.localScale = zoomSprinkleSize;
+            float scaleFactor = Camera.main.orthographicSize / 10f; // Scale based on camera zoom
+            sprinkler.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
         }
         else
         {
