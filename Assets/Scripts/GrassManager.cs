@@ -27,7 +27,7 @@ public class GrassManager : MonoBehaviour
     public float slaveGain;
     public float cutterIncrease;
     public float rakeProviding = 1f;
-    public float rakeProvidingIncrease = 1.5f;
+    public float rakeProvidingIncrease = 1.6f;
 
     private void Awake()
     {

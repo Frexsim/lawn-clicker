@@ -1017,7 +1017,7 @@ MonoBehaviour:
   slaveGain: 0
   cutterIncrease: 0
   rakeProviding: 0
-  rakeProvidingIncrease: 0
+  rakeProvidingIncrease: 1.5
 --- !u!4 &382693581
 Transform:
   m_ObjectHideFlags: 0
@@ -1385,7 +1385,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215688, g: 0.24690299, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.54088044, g: 0.54088044, b: 0.54088044, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2841,7 +2841,7 @@ Transform:
   m_GameObject: {fileID: 994631244}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.4, y: 8.4, z: 0}
+  m_LocalPosition: {x: -2.7, y: 3.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4064,7 +4064,7 @@ MonoBehaviour:
   costAmount: 100
   costIncrease: 1.2
   numberOfDecimals: 0
-  moneyYouHave: {fileID: 0}
+  moneyYouHave: {fileID: 736021997}
   slaveCostAmount: 200
   slaveCostIncrease: 1.5
   slaves: 0
@@ -4115,7 +4115,7 @@ MonoBehaviour:
   rakeAmountText: {fileID: 688746600}
   slaveCostAmount: 200
   slaveCostIncrease: 1.5
-  slaveMoneyMaking: 20
+  slaveMoneyMaking: 40
   slaveCostText: {fileID: 996934030}
   slaveAmountText: {fileID: 605000471}
   cutterCostAmount: 50
@@ -4123,7 +4123,7 @@ MonoBehaviour:
   cutterCostText: {fileID: 690383259}
   cutterLevelText: {fileID: 1551567872}
   cutterProviding: 1
-  plotSellAmount: 5000
+  plotSellAmount: 1000
   plotSellIncrease: 1.6
   plotSellText: {fileID: 2036439341}
   plotSellAmountText: {fileID: 1658177336}
@@ -5018,7 +5018,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5000
+  m_text: 1000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

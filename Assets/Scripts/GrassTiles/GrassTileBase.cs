@@ -46,6 +46,7 @@ public class GrassTileBase : MonoBehaviour
     {
         grassManager.moneyYouHave.text = grassManager.money.ToString();
         grassManager.defaultGrassMoney = 1f;
+
         if (health > 0)
         {
             grassManager.defaultGrassMoney = grassManager.defaultGrassMoney * purchaseUpgrades.cutterProviding;
